@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Crawler: Youtube Videos</title>
+    </head>
+    <body>
+        <label>Score: {{request.session.score}}</label>
+        <h2>Which YouTube video has more views?</h2>
+        <form action='/answer' method='POST'>
+        {% csrf_token %}
+            <button type='submit' name='song1' value='{{song1.id}}'>{{song1.title}} by {{song1.author}}</button>
+            <button type='submit' name='song2' value='{{song2.id}}'>{{song2.title}} by {{song2.author}}</button>
+        </form>
+        <br>
+        <label>High score: {{request.session.hiscore}}</label><br>
+        <a href="/">Start over</a> | <a href="/reset">Reset high score</a>
+    </body>
+</html>
