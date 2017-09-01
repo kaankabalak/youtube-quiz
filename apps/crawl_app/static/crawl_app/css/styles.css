@@ -1,6 +1,10 @@
 h2, p, label, a, button{
 	font-family: 'Roboto', sans-serif;
 }
+p {
+	margin: 15px;
+	font-size: 10pt;
+}
 h2 {
 	margin: 10px;
 	font-size: 25pt;
