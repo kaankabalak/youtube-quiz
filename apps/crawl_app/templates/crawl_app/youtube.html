@@ -2,17 +2,43 @@
 <html>
     <head>
         <title>Crawler: Youtube Videos</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"> 
+        {%load staticfiles%}
+        <link rel="stylesheet" href="{% static 'crawl_app/css/styles.css' %}" charset="utf-8">
+        <!-- materialize -->
+<!--         <meta name = "viewport" content = "width = device-width, initial-scale = 1">  
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- jquery -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
-        <label>Score: {{request.session.score}}</label>
-        <h2>Which YouTube video has more views?</h2>
-        <form action='/answer' method='POST'>
-        {% csrf_token %}
-            <button type='submit' name='song1' value='{{song1.id}}'>{{song1.title}} by {{song1.author}}</button>
-            <button type='submit' name='song2' value='{{song2.id}}'>{{song2.title}} by {{song2.author}}</button>
-        </form>
-        <br>
-        <label>High score: {{request.session.hiscore}}</label><br>
-        <a href="/">Start over</a> | <a href="/reset">Reset high score</a>
+        <div id="wrapper">
+            <h2>Which YouTube video has more views?</h2>
+
+            <label class="currentscore">Score<span class="scoretext">{{request.session.score}}</span></label>
+            <label class="hiscore">High score<span class="hiscoretext">{{request.session.hiscore}}</span></label>
+
+            <form action='/answer' method='POST'>
+                {% csrf_token %}
+                <div id="videos">
+                    <div class="item">
+                        <button class="z-depth-1" type='submit' name='song1' value='{{song1.id}}'>{{song1.title}} by {{song1.author}}</button>
+                        <iframe class="z-depth-2" width="420" height="315" src="{{url1}}">
+                        </iframe>  
+                    </div>
+                    <div class="item">
+                        <button class="z-depth-1" type='submit' name='song2' value='{{song2.id}}'>{{song2.title}} by {{song2.author}}</button>
+                        <iframe class="z-depth-2" width="420" height="315" src="{{url2}}">
+                        </iframe> 
+                    </div>
+                </div>
+            </form>
+            <br>
+            <div class="bottom">
+                <a href="/">Start over</a> | <a href="/reset">Reset high score</a>
+            </div>
+        </div>
     </body>
 </html>

@@ -1,0 +1,71 @@
+h2, p, label, a, button{
+	font-family: 'Roboto', sans-serif;
+}
+h2 {
+	margin: 10px;
+	font-size: 25pt;
+}
+.currentscore {
+	text-transform: uppercase;
+	background-color: #FF0000;
+	padding: 10px 16px;
+	display: inline-block;
+	margin-bottom: 10px;
+	font-weight: bold;
+	color: white;
+	border-radius: 2px;
+}
+.hiscore {
+	text-transform: uppercase;
+	background-color: #EEEEEE;
+	padding: 10px 16px;
+	display: inline-block;
+	margin-bottom: 10px;
+	font-weight: bold;
+	color: #6A6A6A;
+	border-radius: 2px;
+}
+.scoretext {
+	color: #FFC7C7;
+	margin-left: 8px;
+}
+.hiscoretext {
+	margin-left: 8px;
+}
+#wrapper {
+	background-color: #fafafa;
+	text-align: center;
+	padding: 10px;
+}
+#videos {
+	/*background-color: red;*/
+}
+.item {
+	/*background-color: blue;*/
+	width: 500px;
+	display: inline-block;
+	vertical-align: top;
+	padding: 10px;
+}
+button {
+	margin-bottom: 10px;
+	width: 420px;
+	padding: 14px;
+	font-size: 9pt;
+	color: #fafafa;
+	background-color: #6a6a6a;
+	border: 0;
+	border-radius: 2px;
+}
+button:hover {
+	background-color: #4a4a4a;
+}
+button:active {
+    transform: translateY(2px);
+}
+iframe {
+	border: 0;
+}
+.bottom {
+	display: block;
+}

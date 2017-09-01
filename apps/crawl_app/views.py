@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 from random import randint
 from .models import Video
 
+import requests
+
+
 # Create your views here.
 def index(request):
     request.session['score'] = 0
@@ -16,6 +19,13 @@ def reset(request):
     return redirect('/youtube')
 
 def youtube(request):
+    # reset hiscore
+    if 'hiscore' in request.session:
+        print "hiscore exists"
+    else:
+        request.session['hiscore'] = 0
+        print "hiscore reset"
+    
     # determine two indexes
     index1 = randint(1, 80)
     index2 = randint(1, 80)
@@ -29,6 +39,12 @@ def youtube(request):
     song1 = Video.objects.get(pk=index1)
     song2 = Video.objects.get(pk=index2)
 
+    r1 = requests.get('https://www.googleapis.com/youtube/v3/search?part=id&q=' + song1.title + ' by ' + song1.author +'&type=video&fields=items%2Fid&key=AIzaSyCZ3-8TTK_rQNinKI12rQRubjYenemIlVs')
+    url1 = "https://www.youtube.com/embed/" + r1.json()['items'][0]['id']['videoId']
+
+    r2 = requests.get('https://www.googleapis.com/youtube/v3/search?part=id&q=' + song2.title + ' by ' + song2.author + '&type=video&fields=items%2Fid&key=AIzaSyCZ3-8TTK_rQNinKI12rQRubjYenemIlVs')
+    url2 = "https://www.youtube.com/embed/" + r2.json()['items'][0]['id']['videoId']
+
     if (song1.views > song2.views):
         answer = song1
     else:
@@ -40,7 +56,9 @@ def youtube(request):
         #'list' : videos,
         'song1' : song1,
         'song2' : song2,
-        'answer': answer
+        'answer': answer,
+        'url1': url1,
+        'url2': url2
     }
 
     return render(request, 'crawl_app/youtube.html', context)
